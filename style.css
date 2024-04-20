@@ -1,0 +1,200 @@
+.dashboard-container {
+    margin-top: 20px;
+    
+
+  }
+  
+  .dashboard-metrics {
+    display: flex;
+    background-color: #4a4a4a;
+    justify-content: space-around;
+    
+  }
+  
+  .dashboard-metrics div {
+    text-align: center;
+    
+
+    
+  }
+  
+  .dashboard-metrics h3 {
+    margin-bottom: 10px;
+    
+  }
+  
+  .dashboard-metrics p {
+    font-weight: bold;
+    
+  }
+  .hidden {
+    display: none;
+  }
+  
+  /* Remaining CSS remains the same */
+  
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #4a4a4a;
+  }
+  
+  header {
+    text-align: center;
+  }
+  
+  .dashboard {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+    
+  }
+  
+  .metric {
+    background-color: #4a4a4a;
+    padding: 20px;
+    border-radius: 5px;
+    text-align:center;
+    display:inline-table;
+  }
+  
+  .metric h2 {
+    margin-top: 0;
+  }
+  
+
+
+    body {
+
+    
+        font-family: Arial, sans-serif;  
+        margin: 1;
+        padding:0;
+        text-align: center;
+        background-image: url("bg bakery.jpg"); /* Replace 'background_image.jpg' with your image file path */
+        background-size: cover;
+        background-position: center;
+        height: 700px;
+        width: auto;
+        background-repeat:space;
+        background-attachment: fixed;
+        color: #ffffff; /* Set text color to be visible on the background */
+        
+    }
+
+    .tab-content {
+        display: none;
+        background-image: url("bg bakery.jpg"); /* Replace 'tab_background_image.jpg' with your tab-specific image file path */
+        height: 100vh;
+        width: auto;
+        background-size:cover;
+        background-position: center;
+      
+        background-repeat: no-repeat;
+        padding: 20px; /* Adjust padding as needed */
+    }
+
+    .active-tab {
+        display: block;
+    }
+
+    .search-container {
+        margin-top: 20px;
+        padding-bottom: 10px;
+      }
+      
+      #searchInput {
+        padding: 8px;
+        width: 200px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      
+      #searchButton {
+        padding: 8px 16px;
+        background-color: #535b64;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      #searchButton:hover {
+        background-color: #535b64;
+      }
+      
+    ul.tabs {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow:hidden;
+        background-color: none;
+        background-image: url("bg7.jpg"); /* bg ng  clickable"stock eme eme"*/
+        background-size: cover;
+        
+        background-position: center;
+        height: auto;
+        width: auto;
+        background-repeat: no-repeat;
+        text-align: center;
+    }
+
+    ul.tabs li {
+        float: center;
+        display:inline-table;
+    }
+
+    ul.tabs li a {
+        display: block;
+        color: #ffffff;
+        text-align: middle;
+        padding: 14px 16px;
+        text-decoration: none;
+        transition: 0.3s;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    ul.tabs li a:hover {
+        background-color: #ddd;
+    }
+
+    #login-form {
+        max-width: 300px;
+        margin: 50px auto;
+    }
+
+    #login-form input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    #login-btn {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+    table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        padding: 15px;
+        text-align: left;
+    }
+
+    th {
+        background-color:none;
+    }

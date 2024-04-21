@@ -1,0 +1,227 @@
+/* Resetting default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Changed font to a more modern one */
+  background-color: #0d1d25; /* Deep Blue */
+  color: #c6c6d0; /* Light Gray */
+}
+
+#admin-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.tabs {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tabs li {
+  margin-right: 20px;
+}
+
+.tabs li a {
+  text-decoration: none;
+  color: #0d1d25; /* Light Gray */
+  padding: 10px 20px;
+  border-radius: 5px 5px 0 0;
+  background-color: #d59d80; /* Peach */
+  transition: background-color 0.3s ease;
+}
+
+.tabs li a:hover {
+  background-color: #c0754d; /* Lighter Peach on hover */
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active-tab {
+  display: block;
+}
+
+.metrics-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Adjust alignment as needed */
+}
+
+.metric {
+    flex: 1 0 300px; /* Flex-grow, flex-shrink, flex-basis */
+    padding: 20px;
+    background-color:#d59d80; /* Light gray */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    max-width: 300px; /* Adjust as needed */
+    color: #333;
+}
+
+.metric h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333; /* Dark gray */
+}
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  color: #c6c6d0; /* Light Gray */
+}
+
+table th {
+  background-color: #d59d80; /* Peach */
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-container input[type="text"] {
+  padding: 10px;
+  width: 200px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  background-color: #0d1d25; /* Deep Blue */
+  color: #c6c6d0; /* Light Gray */
+}
+
+.search-container button {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  background-color: #d59d80; /* Peach */
+  cursor: pointer;
+  color: #fff; /* White */
+}
+
+.search-container button:hover {
+  background-color: #c0754d; /* Lighter Peach on hover */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #0d1d25;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal input[type="text"] {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+.modal button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #d59d80; /* Peach */
+  color: #333;
+  cursor: pointer;
+}
+
+.modal button:hover {
+  background-color: #c0754d; /* Lighter Peach on hover */
+}
+
+/* New styles for the bakery-inspired theme */
+
+h2 {
+  color: #b6410f; /* Dark Orange */
+  margin-bottom: 20px; /* Increased spacing */
+}
+
+input[type="text"],
+input[type="password"],
+button[type="submit"] {
+  background-color: #f9e8cf; /* Light cream */
+  border: 1px solid #b6410f; /* Dark Orange */
+  border-radius: 5px;
+  padding: 12px;
+  margin-bottom: 15px;
+  width: 100%; /* Full width */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  color: #333;
+}
+
+input[type="text"]:focus,
+button[type="submit"]:hover {
+  background-color: #0d1d25; /* Lighter cream on focus/hover */
+}
+
+button[type="submit"] {
+  color: #b6410f; /* White text */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0d1d25; /* Dark Orange on hover */
+}
+
+.error {
+  color: #b6410f; /* Dark Orange for error messages */
+}
+
+#login-form {
+  max-width: 300px;
+  margin: 50px auto;
+}
+
+#login-form input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}

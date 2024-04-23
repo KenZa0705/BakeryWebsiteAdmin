@@ -4,24 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="C:\\xampp\\htdocs\\ADMS\\trystyles.css">
+    <link rel="stylesheet" type="text/css" href="./trystyles.css">
     <title>Document</title>
  
 </head>
 
 <body>
-<button onclick="openUpdate()">Update</button>
+<button onclick="openBox('updateModal')" class="invButtons">Update</button>
 <div id="updateModal" class="modal" style="display: none">
     <div class="modal-content">
-        <span class="close" onclick="closeUpdate()">&times;</span>
+        <span class="close" onclick="closeBox('updateModal')">&times;</span>
         <form action="includes/updateproducts.php" method="POST">
-            <label for="product_id">Enter Product ID to Update:</label>
-            <input type="text" id="product_id" name="product_id">
+            <h2 id="modalTitle" class="modal-title">Update</h2>
+            <label for="product_id">Product ID:</label>
+            <input type="text" id="product_id" name="product_id" placeholder="Enter Product ID">
             <button type="submit">Update</button>
         </form>
     </div>
 </div>
-
+<button onclick="openBox('deleteModal')" class="invButtons">Delete</button>
+<div id="deleteModal" class="modal" style="display: none">
+    <div class="modal-content">
+        <span class="close" onclick="closeBox('deleteModal')">&times;</span>
+        <form action="includes/process_delete.php" method="POST">
+            <h2 id="modalTitle" class="modal-title">Delete</h2>
+            <label for="product_id">Product ID:</label>
+            <input type="text" id="product_id" name="product_id" placeholder="Enter Product ID">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+</div>
     <table>
         <tr>
             <th> </th>
@@ -53,14 +65,7 @@
         ?>
     </table>
 
-    <script >
-        function openUpdate() {
-  document.getElementById('updateModal').style.display = 'block';
-}
-
-function closeUpdate() {
-  document.getElementById('updateModal').style.display = 'none';
-}
+    <script src="./script.js">
     </script>
 
 </body>

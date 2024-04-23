@@ -44,11 +44,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $placeholders[':product_id'] = $product_id;
             $stmt->execute($placeholders);
             echo "Product updated successfully.";
-            header('../mainInterface.php');
+            header('Location: ../mainInterface.php');
         } else {
             echo "No changes were made.";
             header('../mainInterface.php');
-
         }
     } else {
         echo "Product with ID $product_id not found.";

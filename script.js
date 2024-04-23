@@ -1,24 +1,12 @@
-var modal = document.getElementById("productModal");
 var saveButton = document.getElementById("saveButton");
 var modalTitle = document.getElementById("modalTitle");
 
-function openModal(title) {
-  modal.style.display = "block";
-  modalTitle.textContent = title;
+function openBox(param) {
+  document.getElementById(param).style.display = "block";
 }
 
-function closeModal() {
-  modal.style.display = "none";
-  productNameInput.value = "";
-  productPriceInput.value = "";
-}
-
-function toggleInventory() {
-  inventoryContainer.classList.toggle("hidden");
-}
-
-function addProduct() {
-  openModal("Add Product");
+function closeBox(param) {
+  document.getElementById(param).style.display = "none";
 }
 
 function openTab(tabName) {
@@ -28,24 +16,12 @@ function openTab(tabName) {
         tabContent[i].style.display = "none";
     }
     document.getElementById(tabName).style.display = "block";
-
 }
 
-function search() {
-    var input, filter, ul, li, a, i, txtValue;
-    input = document.getElementById('searchInput');
-    filter = input.value.toUpperCase();
-    ul = document.getElementById("searchResults");
-    li = ul.getElementsByTagName('li');
-  
-    for (i = 0; i < li.length; i++) {
-      a = li[i].getElementsByTagName("a")[0];
-      txtValue = a.textContent || a.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        li[i].style.display = "";
-      } else {
-        li[i].style.display = "none";
-      }
-    }
-  }
-  
+function verify(val) {
+  document.getElementById(val).style.display = "block";
+}
+window.onload = function() {
+  var button = document.getElementById("alwaysClicked");
+  button.click(); // Simulate a click event on the button
+};

@@ -24,7 +24,7 @@
                                         orders.order_date, orders.delivery_date, orders.total_price, orders.status
                                         FROM orders 
                                         INNER JOIN customers ON orders.customer_id = customers.customer_id
-                                        ORDER BY orders.order_date DESC LIMIT 5";
+                                        ORDER BY orders.order_date DESC LIMIT 20";
                             $recent_products = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
                             
                             foreach ($recent_products as $row) {

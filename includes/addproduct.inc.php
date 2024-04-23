@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $stmt->execute([$name, $description, $price, $quantity]);
 
-        header("Location: ../index.php");
+        header("Location: ../mainInterface.php");
         exit();
     } catch (PDOException $e) {
         die("Query Failed: " . $e->getMessage());

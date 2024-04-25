@@ -12,7 +12,6 @@
                         <th class='order_head'>Order Number</th>
                         <th class='order_head'>Customer</th>
                         <th class='order_head'>Order Date</th>
-                        <th class='order_head'>Delivery Date</th>
                         <th class='order_head'>Total Amount</th>
                         <th class='order_head'>Order Status</th>
                     </tr>
@@ -20,8 +19,8 @@
                         require_once 'dbh.inc.php';
 
                         try {
-                            $query = "SELECT orders.order_number, customers.first_name || ' ' || customers.last_name AS Customer, 
-                                        orders.order_date, orders.delivery_date, orders.total_price, orders.status
+                            $query = "SELECT orders.order_id, customers.first_name || ' ' || customers.last_name AS Customer, 
+                                        orders.order_date, orders.total_price, orders.status
                                         FROM orders 
                                         INNER JOIN customers ON orders.customer_id = customers.customer_id
                                         ORDER BY orders.order_date DESC LIMIT 5";
@@ -30,10 +29,9 @@
                             foreach ($recent_products as $row) {
                                 echo "
                                 <tr>
-                                    <td>{$row['order_number']}</td>
+                                    <td>{$row['order_id']}</td>
                                     <td>{$row['customer']}</td>
                                     <td>{$row['order_date']}</td>
-                                    <td>{$row['delivery_date']}</td>
                                     <td>{$row['total_price']} PHP </td>
                                     <td>{$row['status']}</td>
                                 </tr>";

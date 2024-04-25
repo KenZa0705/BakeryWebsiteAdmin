@@ -10,9 +10,9 @@
 
 <body>
     <div id="searchModal" class="modal" style="display:block;">
-        <div class="modal-content">
+        <div class="modal-content" style="display: block;">
             <table>
-            <span class="close" onclick="window.location.href='../mainInterface.php#Inventory';">&times;</span>
+            <span class="close" onclick="history.back()">&times;</span>
                 <tr>
                     <th> </th>
                     <th>Name</th>

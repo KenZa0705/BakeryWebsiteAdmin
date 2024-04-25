@@ -13,10 +13,9 @@
 <button onclick="openBox('updateModal')" class="invButtons">Update</button>
 <div id="updateModal" class="modal" style="display: none">
     <div class="modal-content">
-        <span class="close" onclick="closeBox('updateModal')">&times;</span>
+        <span class="close" onclick="closeBox('updateModal');">&times;</span>
         <form action="includes/updateproducts.php" method="POST">
             <h2 id="modalTitle" class="modal-title">Update</h2>
-            <label for="product_id">Product ID:</label>
             <input type="text" id="product_id" name="product_id" placeholder="Enter Product ID">
             <button type="submit">Update</button>
         </form>
@@ -26,14 +25,17 @@
 <div id="deleteModal" class="modal" style="display: none">
     <div class="modal-content">
         <span class="close" onclick="closeBox('deleteModal')">&times;</span>
-        <form action="includes/process_delete.php" method="POST">
+        <form action="includes/process_delete.php" method="POST" onsubmit="return confirmDelete()">
             <h2 id="modalTitle" class="modal-title">Delete</h2>
-            <label for="product_id">Product ID:</label>
             <input type="text" id="product_id" name="product_id" placeholder="Enter Product ID">
             <button type="submit">Delete</button>
         </form>
     </div>
 </div>
+
+
+
+
     <table>
         <tr>
             <th> </th>
@@ -41,12 +43,17 @@
             <th>Description</th>
             <th>Price</th>
             <th>Available Stocks</th>
+            <th>Expense</th>
+            <th>Supplier</th>
+            <th>Update/Delete</th>
         </tr>
         <?php
         require_once 'dbh.inc.php';
 
         try {
-            $query = "SELECT product_id, name, description, price, quantity_available FROM products ORDER BY product_id DESC;";
+            $query = "SELECT p.product_id, p.name, p.description, p.price, p.quantity_available, p.expense, s.name AS supplier
+            FROM products p
+            JOIN suppliers s ON s.supplier_id = p.supplier_id ORDER BY product_id DESC;";
             $products = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
 
             foreach ($products as $row) {
@@ -57,8 +64,23 @@
                     <td>{$row['description']}</td>
                     <td>{$row['price']}</td>
                     <td>{$row['quantity_available']}</td>
+                    <td>{$row['expense']}</td>
+                    <td>{$row['supplier']}</td>
+                    <td>
+                    <form action='includes/updateproducts.php' method='POST' style='display: inline;'> 
+                        <input type='hidden' name='product_id' value='{$row['product_id']}'>
+                        <button type='submit'><img src='images/Update.png' alt='Update' width=20px></button>
+                    </form>
+                    <form id='deleteForm' action='includes/process_delete.php' method='POST' style='display: inline;'> 
+                        <input type='hidden' name='product_id' value='{$row['product_id']}'>
+                        <button type='submit' onclick=\"return confirm('Are you sure you want to delete this product?');\">
+                        <img src='images/trash.png' alt='Delete' width='20px'>
+                        </button> 
+                    </form>
+                    </td>
                 </tr>";
             }
+            
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }

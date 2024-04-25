@@ -23,7 +23,7 @@
         require_once 'dbh.inc.php';
 
         try {
-            $query = "SELECT products.name, products.product_id,products.quantity_available, products.price, COUNT(order_details.quantity) as total_sold
+            $query = "SELECT products.name, products.product_id,products.quantity_available, products.price, SUM(order_details.quantity) as total_sold
                             FROM order_details
                             JOIN orders ON orders.order_id = order_details.order_id
                             JOIN products ON products.product_id = order_details.product_id

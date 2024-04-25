@@ -65,25 +65,29 @@ body {
 /* Dashboard Styles */
 .dashboard-title {
     color: #b6410f;
-    font-size: 30px;
     margin-bottom: 20px;
+    border-style: dashed;
+    text-align: center;
+    font-size: 50px;
 }
 
 .metrics-container {
     display: flex;
     justify-content: space-between;
     margin-block: 10px;
+    
 }
 
 .metric {
     width: 250px;
     background-color: #0d1d25;
-    padding: 20px;
+    padding: 10px;
     border-radius: 5px;
     text-align: center;
     border-style: solid;
     border-color: #b6410f;
     border-width: 5px;
+    margin-block: 5px;
 }
 
 .metric h2 {
@@ -114,6 +118,9 @@ a {
 .inventory-title {
     color: #d59d80;
     margin-bottom: 20px;
+    border-style: dashed;
+    text-align: center;
+    font-size: 50px;
 }
 
 .search-container {
@@ -125,7 +132,16 @@ a {
     padding: 10px;
     width: 200px;
 }
-
+.searchResult {
+    background-color: #104c64;
+    padding: 20px;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    float: inline-end;
+    transform: translate(-50%, -50%);
+}
 .search-button {
     padding: 10px 20px;
     background-color: #c0754d;
@@ -162,9 +178,17 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    
 }
-.modal-content form label{
-    color: #0d1d25;
+.modal-content label{
+    color: #c6c6d0;
+    display: block;
+}
+.modal-content button[type="submit"]:hover{
+    border-color: #b6410f;
+}
+.modal-content button[type="submit"]{
+    border-color: #104c64;
 }
 .close {
     color: #c6c6d0;
@@ -210,38 +234,33 @@ a {
 .sales-title {
     color: #d59d80;
     margin-bottom: 20px;
+    border-style: dashed;
+    text-align: center;
+    font-size: 50px;
 }
 
-/* Order Info Styles */
+/* Customer Info Styles */
 .customer-title {
     color: #d59d80;
     margin-bottom: 20px;
+    border-style: dashed;
+    text-align: center;
+    font-size: 50px;
 }
-
-.order-table {
-    width: 100%;
-    border-collapse: collapse;
+.customer-table-container {
+    max-height: 400px; /* Set the maximum height for the container */
+    overflow-y: auto; /* Enable vertical scrollbar */
+    border-style: solid;
+    border-width: 5px;
+    border-color: #d59d80;
+}
+/*Cancelations Tab Styles*/
+.cancelations-title {
+    color: #d59d80;
     margin-bottom: 20px;
-}
-
-.order-table th,
-.order-table td {
-    padding: 10px;
-    border-bottom: 1px solid #c6c6d0;
-    text-align: left;
-}
-
-.order-table th {
-    background-color: #104c64;
-    color: #c6c6d0;
-}
-
-.order-table tbody tr:nth-child(even) {
-    background-color: #104c64;
-}
-
-.order-table tbody tr:hover {
-    background-color: #0d1d25;
+    border-style: dashed;
+    text-align: center;
+    font-size: 50px;
 }
 
 /* General Styles */
@@ -263,7 +282,18 @@ a {
 form {
     margin-bottom: 20px;
 }
-
+.sortForm button, .sortForm select{
+    border-radius: 5px;
+    color: #0d1d25;
+    background-color: #c0754d;
+    padding: 5px;
+}
+.sortForm select option{
+    border-radius: 5px;
+    color: #c6c6d0;
+    background-color: #104c64;
+    padding: 5px;
+}
 label {
     color: #c6c6d0;
 }
@@ -281,11 +311,11 @@ button[type="submit"] {
 button[type="submit"] {
     cursor: pointer;
     border-style: solid;
-    background-color: #104c64;
+    background-color: #c0754d;
 }
 
 button[type="submit"]:hover {
-    background-color: #0d1d25;
+    background-color: #104c64;
     border-style: solid;
 }
 
@@ -302,15 +332,15 @@ th,
 td {
     padding: 10px;
     text-align: center;
-    border-radius: 10px;
     border-style: solid;
 }
 
 th {
     background-color: #104c64;
     color: #c6c6d0;
-    border-width: 5px;
-    border-radius: 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 /*Login Form*/

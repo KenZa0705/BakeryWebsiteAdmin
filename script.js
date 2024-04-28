@@ -60,3 +60,11 @@ document.addEventListener("DOMContentLoaded", function() {
       errMessage(errorMessage);
   }
 });
+
+function logout(){
+  var confirmLogout = confirm("Are you sure you want to logout?");
+
+  if (confirmLogout){
+    window.location.href = 'includes/logout.inc.php';
+  }
+}

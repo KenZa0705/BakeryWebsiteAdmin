@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'dbh.inc.php';
 
 // Check if username and password are provided
@@ -11,8 +12,9 @@ if(isset($_POST['username']) && isset($_POST['password'])) {
     $stmt->execute([$username]);
     $user = $stmt->fetch();
 
-    if ($user && $password === $user['password']) {
+    if ($user && $password === $user['password'] && $user['status'] === 'Active') {
         // User authenticated, redirect to dashboard
+        $_SESSION['admin'] = $user;
         header("Location: ../mainInterface.php");
         exit();
     } else {

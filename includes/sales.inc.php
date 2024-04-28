@@ -24,35 +24,35 @@
 
         <button type="button" onclick="sortTable()">Sort</button>
     </form>
+    <div class="sales-table-container">
+        <table id="orderTable">
+            <thead>
+                <tr class='order_table'>
+                    <th class='order_head'>Order Number</th>
+                    <th class='order_head'>Customer</th>
+                    <th class='order_head'>Order Date</th>
+                    <th class='order_head'>Total Amount</th>
+                    <th class='order_head'>Order Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                require_once 'dbh.inc.php';
 
-    <table id="orderTable">
-        <thead>
-            <tr class='order_table'>
-                <th class='order_head'>Order Number</th>
-                <th class='order_head'>Customer</th>
-                <th class='order_head'>Order Date</th>
-                <th class='order_head'>Total Amount</th>
-                <th class='order_head'>Order Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            require_once 'dbh.inc.php';
+                // Check if sorting parameters are set
+                $sortColumn = isset($_GET['sortColumn']) ? $_GET['sortColumn'] : 'order_date';
+                $sortOrder = isset($_GET['sortOrder']) ? $_GET['sortOrder'] : 'DESC';
 
-            // Check if sorting parameters are set
-            $sortColumn = isset($_GET['sortColumn']) ? $_GET['sortColumn'] : 'order_date';
-            $sortOrder = isset($_GET['sortOrder']) ? $_GET['sortOrder'] : 'DESC';
-
-            try {
-                $query = "SELECT orders.order_id, customers.first_name || ' ' || customers.last_name AS Customer, 
+                try {
+                    $query = "SELECT orders.order_id, customers.first_name || ' ' || customers.last_name AS Customer, 
                                         orders.order_date, orders.total_price, orders.status
                                         FROM orders 
                                         INNER JOIN customers ON orders.customer_id = customers.customer_id
-                                        ORDER BY $sortColumn $sortOrder LIMIT 20";
-                $recent_products = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
+                                        ORDER BY $sortColumn $sortOrder";
+                    $recent_products = $pdo->query($query)->fetchAll(PDO::FETCH_ASSOC);
 
-                foreach ($recent_products as $row) {
-                    echo "
+                    foreach ($recent_products as $row) {
+                        echo "
                                     <tr>
                                         <td>{$row['order_id']}</td>
                                         <td>{$row['customer']}</td>
@@ -60,14 +60,15 @@
                                         <td>{$row['total_price']}</td>
                                         <td>{$row['status']}</td>
                                     </tr>";
+                    }
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
                 }
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
 
-            ?>
-        </tbody>
-    </table>
+                ?>
+            </tbody>
+        </table>
+    </div>
 
     <script>
         function sortTable() {

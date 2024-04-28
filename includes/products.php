@@ -21,20 +21,19 @@
         </form>
     </div>
 </div>
-<button onclick="openBox('deleteModal')" class="invButtons">Delete</button>
+<?php if ($position === 'Manager') : ?>
+    <button onclick="openBox('deleteModal')" class="invButtons">Delete</button>            
+<?php endif; ?>
 <div id="deleteModal" class="modal" style="display: none">
     <div class="modal-content">
         <span class="close" onclick="closeBox('deleteModal')">&times;</span>
         <form action="includes/process_delete.php" method="POST" onsubmit="return confirmDelete()">
             <h2 id="modalTitle" class="modal-title">Delete</h2>
             <input type="text" id="product_id" name="product_id" placeholder="Enter Product ID">
-            <button type="submit">Delete</button>
+            <button type="submit"><img src="images/trash.png" alt="Delete Button">Delete</button>
         </form>
     </div>
 </div>
-
-
-
 
     <table>
         <tr>
@@ -70,12 +69,10 @@
                     <form action='includes/updateproducts.php' method='POST' style='display: inline;'> 
                         <input type='hidden' name='product_id' value='{$row['product_id']}'>
                         <button type='submit'><img src='images/Update.png' alt='Update' width=20px></button>
-                    </form>
-                    <form id='deleteForm' action='includes/process_delete.php' method='POST' style='display: inline;'> 
+                    </form>                   
+                    <form action='includes/process_delete.php' method='POST' style='display: inline;' onsubmit='return confirmDelete()'> 
                         <input type='hidden' name='product_id' value='{$row['product_id']}'>
-                        <button type='submit' onclick=\"return confirm('Are you sure you want to delete this product?');\">
-                        <img src='images/trash.png' alt='Delete' width='20px'>
-                        </button> 
+                        <button type='submit'><img src='images/trash.png' alt='delete' width=20px></button>
                     </form>
                     </td>
                 </tr>";

@@ -1,3 +1,19 @@
+<?php
+session_start();
+
+// Check if user is logged in
+if (!isset($_SESSION['admin'])) {
+    // If not logged in, redirect to login page
+    header("Location: index.php");
+    exit();
+}
+
+// Retrieve user's information from session
+$user = $_SESSION['admin'];
+$admin_id = $_SESSION['admin']['admin_id'];
+$position = $_SESSION['admin']['position'];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +31,12 @@
 
             <li><a onclick="openTab('Dashboard')">Dashboard</a></li>
             <li><a onclick="openTab('Inventory')">Inventory</a></li>
-            <li><a onclick="openTab('sales-expenses')">Sales</a></li>
-            <li><a onclick="openTab('customer-info')">Customer Info</a></li>
-            <li><a onclick="openTab('cancelations')">Cancelation Requests</a></li>
+            <?php if ($position === 'Manager') : ?>
+                <li><a onclick="openTab('sales-expenses')">Sales</a></li>
+                <li><a onclick="openTab('customer-info')">Customer Info</a></li>
+            <?php endif; ?>
+            <li><a onclick="openTab('orderoperations')">Order Operations</a></li>
+            <li><a onclick="return logout()">Logout</a></li>
         </ul>
 
         <div id="Dashboard" class="tab-content active-tab">
@@ -132,17 +151,15 @@
         require_once 'includes/customers.inc.php';
         ?>
     </div>
-    <div id="cancelations" class="tab-content">
+    <div id="orderoperations" class="tab-content">
         <!-- Content for Customer Info tab -->
-        <h3 class="cancelations-title">Order Cancelation Requests</h3>
+        <h3 class="orderoperations-title">Order Operations</h3>
         <?php
-        require_once 'ordercancelations.php';
+        require_once 'includes/orderoperations.php';
         ?>
     </div>
-
-    <script src="script.js">
-
-    </script>
+    
+    <script src="script.js"></script>
 
 </body>
 

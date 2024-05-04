@@ -1,45 +1,55 @@
 <?php
-// Start the script with a secure session and error handling
 session_start();
-require_once 'dbh.inc.php'; // Include database connection
+require_once 'dbh.inc.php';
 
-// Check if the POST parameters are set and valid
 if (!isset($_POST['order_id']) || !isset($_POST['status'])) {
     die("<script>alert('Invalid input. Order ID and status are required.'); window.location.href = document.referrer;</script>");
 }
 
-// Get the POST parameters
 $order_id = $_POST['order_id'];
 $status = $_POST['status'];
 
-// Validate the status to ensure it's one of the expected values
-$allowed_statuses = ['Processing', 'Ready', 'Picked Up'];
+$allowed_statuses = ['Processing', 'Ready', 'Picked Up', 'Canceled'];
 if (!in_array($status, $allowed_statuses)) {
     die("<script>alert('Invalid status value.'); window.location.href = document.referrer;</script>");
 }
 
 try {
-    // Establish the database connection
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo->beginTransaction(); // Start
 
-    // Prepare the SQL query to update the order status
     $query = "UPDATE orders SET status = :status WHERE order_id = :order_id";
-    
     $statement = $pdo->prepare($query);
-
-    // Bind the parameters to the query
     $statement->bindParam(':order_id', $order_id, PDO::PARAM_INT);
     $statement->bindParam(':status', $status, PDO::PARAM_STR);
 
-    // Execute the update
     $statement->execute();
+    if($status == 'Canceled'){
+        $query3 = "SELECT quantity, product_id FROM order_details WHERE order_id = :order_id";
+        $stmt3 = $pdo->prepare($query3);
+        $stmt3->bindParam(':order_id', $order_id);
+        $stmt3->execute();
+        $canceled_products = $stmt3->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($canceled_products as $row) {
+            $query2 = "UPDATE products SET quantity_available = quantity_available + :quantity WHERE product_id = :product_id";
+            $stmt2 = $pdo->prepare($query2);
+            $stmt2->bindParam(':quantity', $row['quantity']);
+            $stmt2->bindParam(':product_id', $row['product_id']);
+            $stmt2->execute();
+        }
+    }
 
-    // Confirmation message in a JavaScript alert with redirect
+    // Update payment status
+    $query2 = "UPDATE payment_details SET payment_status = 'Paid' WHERE order_id = :order_id";
+    $statement2 = $pdo->prepare($query2);
+    $statement2->bindParam(":order_id", $order_id, PDO::PARAM_INT);
+    $statement2->execute();
+
+    $pdo->commit(); // Commit
+
     echo "<script>alert('Order status updated successfully.'); window.location.href = document.referrer;</script>";
 
 } catch (PDOException $e) {
-    // Handle any database errors and redirect
+    $pdo->rollback(); // Rollback
     echo "<script>alert('Error updating order status: " . $e->getMessage() . "'); window.location.href = document.referrer;</script>";
 }
-
 ?>

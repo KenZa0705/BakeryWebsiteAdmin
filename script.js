@@ -1,6 +1,6 @@
 var saveButton = document.getElementById("saveButton");
 var modalTitle = document.getElementById("modalTitle");
-
+//Open and Close Divs
 function openBox(param) {
   document.getElementById(param).style.display = "block";
 }
@@ -8,7 +8,7 @@ function openBox(param) {
 function closeBox(param) {
   document.getElementById(param).style.display = "none";
 }
-
+//Change Tabs
 function openTab(tabName) {
   var i, tabContent;
   tabContent = document.getElementsByClassName("tab-content");
@@ -17,32 +17,29 @@ function openTab(tabName) {
   }
   document.getElementById(tabName).style.display = "block";
 }
-
+//Secuirty
 function verify(val) {
   document.getElementById(val).style.display = "block";
 }
+
+//Button Clicker
 window.onload = function () {
   var button = document.getElementById("alwaysClicked");
-  button.click(); // Simulate a click event on the button
+  button.click();
 };
-function confirmDelete() {
-  // Ask for confirmation
-  var confirmDelete = confirm("Are you sure you want to delete this product?");
 
-  // If user confirms, return true to submit the form
+//Delete confirmation
+function confirmDelete() {
+  var confirmDelete = confirm("Are you sure you want to delete this product?");
   return confirmDelete;
 }
-function openInventory() {
-  // Your JavaScript code to open the inventory
-  return openTab("Inventory");
-}
 
-// Define the JavaScript function to display error message
+//error alert
 function errMessage(message) {
   alert(message);
 }
 
-// Function to extract URL parameters
+//for error codes
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
   name = name.replace(/[\[\]]/g, "\\$&");
@@ -53,7 +50,6 @@ function getParameterByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-// Check if there's an error message in the URL and display it
 document.addEventListener("DOMContentLoaded", function() {
   var errorMessage = getParameterByName('message');
   if(errorMessage) {
@@ -61,6 +57,8 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 
+
+//logout confirmation and redirection
 function logout(){
   var confirmLogout = confirm("Are you sure you want to logout?");
 

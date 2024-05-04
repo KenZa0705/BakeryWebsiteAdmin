@@ -12,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($product) {
-        // Product found, display update form
         ?>
         <!DOCTYPE html>
         <html lang="en">

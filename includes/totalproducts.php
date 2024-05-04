@@ -2,7 +2,6 @@
 require_once 'includes/dbh.inc.php';
 
 try {
-    // Assuming $pdo is defined in dbh.inc.php
     $query = 'SELECT COUNT(DISTINCT product_id) AS count FROM products;';
     $totalProducts = $pdo->query($query);
     

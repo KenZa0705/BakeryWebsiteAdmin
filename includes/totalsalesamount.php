@@ -2,8 +2,11 @@
 require_once 'includes/dbh.inc.php';
 
 try {
-    // Assuming $pdo is defined in dbh.inc.php
-    $query = "SELECT SUM(total_price) AS count FROM orders WHERE status = 'Picked Up';";
+    $query = "SELECT SUM(o.total_price) AS count
+    FROM order_details od
+    JOIN products p ON od.product_id = p.product_id
+    JOIN orders o ON od.order_id = o.order_id
+    WHERE o.status = 'Picked Up';";
     $totalProducts = $pdo->query($query);
     
     $result = $totalProducts->fetch(PDO::FETCH_ASSOC);

@@ -29,14 +29,14 @@
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $value = $_POST['searchInput'];
 
-                    // Check if the input contains only digits to determine if it's an integer
+                    //check if number
                     if (ctype_digit($value)) {
                         $query = "SELECT product_id, name, description, price, quantity_available FROM products WHERE product_id = :searchInput;";
                     } else {
-                        // Lowercase the input for case-insensitive searching
+                        //strings
                         $value = strtolower($value);
                         $query = "SELECT product_id, name, description, price, quantity_available FROM products WHERE LOWER(name) LIKE :searchInput;";
-                        $value = "%$value%"; // Add wildcards for LIKE operator
+                        $value = "%$value%";
                     }
 
                     $stmt = $pdo->prepare($query);
@@ -55,9 +55,8 @@
                         </tr>";
                     }
                 } else {
-                    // Redirect if the request method is not POST
                     header('Location: ../mainInterface.php');
-                    exit; // Exit to prevent further execution
+                    exit;
                 }
             } catch (PDOException $e) {
                 echo "Error: " . $e->getMessage();

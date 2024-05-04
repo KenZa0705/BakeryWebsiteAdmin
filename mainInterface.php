@@ -1,14 +1,12 @@
 <?php
+require_once 'includes/dbh.inc.php'; // DATABASE CONNECTION
 session_start();
-
-// Check if user is logged in
 if (!isset($_SESSION['admin'])) {
-    // If not logged in, redirect to login page
     header("Location: index.php");
     exit();
 }
 
-// Retrieve user's information from session
+//Get info from admin session
 $user = $_SESSION['admin'];
 $admin_id = $_SESSION['admin']['admin_id'];
 $position = $_SESSION['admin']['position'];
@@ -31,16 +29,16 @@ $position = $_SESSION['admin']['position'];
 
             <li><a onclick="openTab('Dashboard')">Dashboard</a></li>
             <li><a onclick="openTab('Inventory')">Inventory</a></li>
-            <?php if ($position === 'Manager') : ?>
+            <?php if ($position === 'Manager'): ?>
                 <li><a onclick="openTab('sales-expenses')">Sales</a></li>
                 <li><a onclick="openTab('customer-info')">Customer Info</a></li>
             <?php endif; ?>
             <li><a onclick="openTab('orderoperations')">Order Operations</a></li>
             <li><a onclick="return logout()">Logout</a></li>
+
         </ul>
 
         <div id="Dashboard" class="tab-content active-tab">
-            <!-- Content for Stocks tab -->
             <h3 class="dashboard-title">Dashboard</h3>
 
             <div class="metrics-container">
@@ -60,6 +58,7 @@ $position = $_SESSION['admin']['position'];
             <a href="#recentSales">
                 <h3 id="recentSales">Recent Sales</h3>
             </a>
+            <!-- Get table data for dashboard -->
             <?php
             require_once 'includes/recentorders.php';
             require_once 'includes/bestseller.inc.php';
@@ -67,6 +66,7 @@ $position = $_SESSION['admin']['position'];
         </div>
     </div>
 
+    <!-- INVENTORY TAB -->
 
     <div id="Inventory" class="tab-content">
         <h3 class="inventory-title">Inventory</h3>
@@ -76,10 +76,10 @@ $position = $_SESSION['admin']['position'];
                 <button type="submit" id="searchButton" class="search-button">Search</button>
             </form>
         </div>
-        <div id="searchResults">
-            <!-- Search results will be displayed here -->
 
-        </div>
+
+        <!-- Add Product Form not shown unless clicked using the button -->
+
         <div id="productModal" class="modal" style="display: none;">
             <form id="productForm" method="post" action="includes/addproduct.inc.php">
                 <div class="modal-content">
@@ -99,72 +99,73 @@ $position = $_SESSION['admin']['position'];
                 </div>
             </form>
         </div>
+
         <div class="inventory-container">
             <div id="inventoryList">
-                <!-- Inventory items will be displayed here -->
-                <button onclick="openBox('productModal')" class="invButtons">Add Product</button>
-                <?php
+                <?php if ($position === 'Manager'): ?>
+                    <button onclick="openBox('productModal')" class="invButtons">Add Product</button>
+                    <!-- Get table data for inventory with update and delete option -->
+                    <?php
+                endif;
                 require_once 'includes/products.php';
                 ?>
             </div>
         </div>
-    
     </div>
 
+    <!-- SALES TAB -->
+
     <div id="sales-expenses" class="tab-content">
-        <!-- Content for Sales & Expenses tab -->
-            <h3 class="sales-title">Sales</h3>
-            <div class="metrics-container">
-
-                <div class="metric">
-                    <h2>Most Sold Product</h2>
-                    <p><?php require_once 'includes/mostsoldproduct.php'; ?></p>
-
-                </div>
-                <div class="metric">
-                    <h2>Least Sold Products</h2>
-                    <p><?php require_once 'includes/leastsoldproduct.php'; ?></p>
-                </div>
-                <div class="metric">
-                    <h2>Total Expenses</h2>
-                    <p><?php require_once 'includes/totalexpenses.php'; ?></p>
-                </div>
-                <div class="metric">
-                    <h2>Total Profit</h2>
-                    <p><?php require_once 'includes/totalprofit.php'; ?></p>
-                </div>
-                <div class="metric">
-                    <h2>Total Sales</h2>
-                    <p class="num"><?php require_once 'includes/totalsalesamount.php'; ?></p>
-                </div>
+        <h3 class="sales-title">Sales</h3>
+        <div class="metrics-container">
+            <!-- Values of important information -->
+            <div class="metric">
+                <h2>Most Sold Product</h2>
+                <p><?php require_once 'includes/mostsoldproduct.php'; ?></p>
             </div>
-
+            <div class="metric">
+                <h2>Least Sold Product</h2>
+                <p><?php require_once 'includes/leastsoldproduct.php'; ?></p>
+            </div>
+            <div class="metric">
+                <h2>Total Expenses</h2>
+                <p><?php require_once 'includes/totalexpenses.php'; ?></p>
+            </div>
+            <div class="metric">
+                <h2>Total Profit</h2>
+                <p><?php require_once 'includes/totalprofit.php'; ?></p>
+            </div>
+            <div class="metric">
+                <h2>Total Sales</h2>
+                <p class="num"><?php require_once 'includes/totalsalesamount.php'; ?></p>
+            </div>
+        </div>
+        <!-- Get table data for sales -->
         <?php
         require_once 'includes/sales.inc.php';
         ?>
     </div>
 
+    <!-- CUSTOMER INFO TAB -->
+
     <div id="customer-info" class="tab-content">
-        <!-- Content for Customer Info tab -->
         <h3 class="customer-title">Customer Information</h3>
         <?php
         require_once 'includes/customers.inc.php';
         ?>
     </div>
+
+    <!-- ORDER OPERATIONS TAB -->
+
     <div id="orderoperations" class="tab-content">
-        <!-- Content for Customer Info tab -->
         <h3 class="orderoperations-title">Order Operations</h3>
         <?php
         require_once 'includes/orderoperations.php';
         ?>
     </div>
-    
+
     <script src="script.js"></script>
 
 </body>
 
 </html>
-<?php
-require_once 'includes/dbh.inc.php';
-
-?>

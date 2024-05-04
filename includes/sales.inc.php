@@ -39,7 +39,7 @@
                 <?php
                 require_once 'dbh.inc.php';
 
-                // Check if sorting parameters are set
+                //sorts
                 $sortColumn = isset($_GET['sortColumn']) ? $_GET['sortColumn'] : 'order_date';
                 $sortOrder = isset($_GET['sortOrder']) ? $_GET['sortOrder'] : 'DESC';
 

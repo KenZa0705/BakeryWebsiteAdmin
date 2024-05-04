@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="./trystyles.css">
     <title>Document</title>
 </head>
-
+<!-- Get table data for best sellers shows on dashboard -->
 <body>
     <a href="#bestSellers">
     <h3 id="bestSellers">Best Sellers</h3></a>

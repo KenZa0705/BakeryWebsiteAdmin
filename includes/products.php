@@ -30,7 +30,7 @@
         <form action="includes/process_delete.php" method="POST" onsubmit="return confirmDelete()">
             <h2 id="modalTitle" class="modal-title">Delete</h2>
             <input type="text" id="product_id" name="product_id" placeholder="Enter Product ID">
-            <button type="submit"><img src="images/trash.png" alt="Delete Button">Delete</button>
+            <button type="submit">Delete</button>
         </form>
     </div>
 </div>
